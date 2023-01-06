@@ -1,4 +1,8 @@
+import { Hind } from '@next/font/google'
+
 import './globals.css'
+
+const hind = Hind({ weight: '400', subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -12,7 +16,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body className={hind.className}>{children}</body>
     </html>
   )
 }
