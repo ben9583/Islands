@@ -17,7 +17,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className={hind.className} style={{overflow: "visible"}}>
+      <body className={hind.className}>
         <div className="navbar-container" style={{position: "sticky", top: 0, padding: "1rem 1rem"}}>
           <Navbar />
         </div>
