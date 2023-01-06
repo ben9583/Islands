@@ -1,4 +1,5 @@
 import { Hind } from '@next/font/google'
+import Navbar from '../components/Navbar'
 
 import './globals.css'
 
@@ -16,7 +17,14 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className={hind.className}>{children}</body>
+      <body className={hind.className} style={{overflow: "visible"}}>
+        <div className="navbar-container" style={{position: "sticky", top: 0, padding: "1rem 1rem"}}>
+          <Navbar />
+        </div>
+        <div className="main-container">
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
