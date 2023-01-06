@@ -18,7 +18,7 @@ export default function RootLayout({
       */}
       <head />
       <body className={hind.className}>
-        <div className="navbar-container" style={{position: "sticky", top: 0, padding: "1rem 1rem"}}>
+        <div className="navbar-container" style={{position: "sticky", top: 0, padding: "1rem 1rem", zIndex: 100}}>
           <Navbar />
         </div>
         <div className="main-container">
