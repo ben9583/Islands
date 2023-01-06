@@ -23,6 +23,7 @@ body {
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
+  line-height: 1.3;
 }
 
 a {
