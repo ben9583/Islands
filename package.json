@@ -29,7 +29,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "next lint"
+      "eslint --cache --cache-location .next/cache/eslint/ --fix"
     ]
   }
 }
