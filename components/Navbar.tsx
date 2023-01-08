@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './Navbar.module.css'
-import CombinedSVG from '../assets/images/combined.svg'
+import CombinedPNG from '../assets/images/combined.png'
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -9,7 +9,7 @@ export default function Navbar() {
         <nav className={styles.navbar}>
             <div className={styles.navbarLogo}>
                 <Link href="/">
-                    <Image src={CombinedSVG} alt="Logo" height={50} />
+                    <Image src={CombinedPNG} alt="Logo" height={50} />
                 </Link>
             </div>
             <div className={styles.whitespace} />
