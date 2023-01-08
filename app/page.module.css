@@ -44,7 +44,7 @@
 .half {
   flex: 1;
   height: 100%;
-  padding: 0px 20px;
+  padding: 0px calc(-50px + 15vw);
   text-align: center;
   display: flex;
   flex-direction: column;
