@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar'
 
 import './globals.css'
 
-const hind = Hind({ weight: '400', subsets: ['latin'] })
+const hind = Hind({ weight: ['300', '400', '500', '600', '700'], subsets: ['latin'] })
 
 export default function RootLayout({
   children,
