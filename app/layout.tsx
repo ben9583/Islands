@@ -1,5 +1,6 @@
 import { Hind } from '@next/font/google'
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 import './globals.css'
 
@@ -23,6 +24,9 @@ export default function RootLayout({
         </div>
         <div className="main-container">
           {children}
+        </div>
+        <div className="footer-container">
+          <Footer />
         </div>
       </body>
     </html>
