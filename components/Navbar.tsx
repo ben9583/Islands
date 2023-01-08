@@ -23,7 +23,7 @@ export default function Navbar() {
                     <p>Source</p>
                 </Link>
             </div>
-            <div className={styles.navbarTransparentLink}>
+            <div className={[styles.navbarTransparentLink, styles.invisibleOnMobile].join(" ")}>
                 <Link href="#">
                     <p>Open</p>
                 </Link>
