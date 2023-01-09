@@ -35,7 +35,7 @@ The installation process may take some time! As more software is used for this p
 With the setup process complete, you can host your own development server running the following command
 
 ```sh
-pnpm run start
+pnpm run dev
 ```
 
 After a bit of time, the website will be hosted at http://localhost:3000 where you can view your instance. You can try modifying a file to see the updates change live on the browser.
