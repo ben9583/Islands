@@ -14,7 +14,7 @@ export default function Footer() {
                 <Link href="/about">Learn more about our mission here.</Link>
             </div>
             <div className={styles.footerHalf}>
-                <p>Created by <Link href="https://ben9583.com">Ben Plate</Link> and <Link href="#">others.</Link></p>
+                <p>Created by <Link href="https://ben9583.com">Ben Plate</Link> and <Link href="https://github.com/ben9583/islands/graphs/contributors">others.</Link></p>
             </div>
         </div>
     )
