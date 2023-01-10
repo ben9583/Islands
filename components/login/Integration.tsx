@@ -19,7 +19,7 @@ const integrations = {
         "icon": DiscordSVG,
     },
     "github": {
-        "authorizationURL": "https://github.com/login/oauth/authorize",
+        "authorizationURL": `https://github.com/login/oauth/authorize?client_id=${process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID}&redirect_uri=http://localhost:3000/api/callback/github&scope=read:user%20user:email`,
         "backgroundColor": "#000",
         "color": "#fff",
         "displayName": "GitHub",
