@@ -12,12 +12,14 @@ type IntegrationProps = {
 
 const integrations = {
     "discord": {
+        "authorizationURL": "",
         "backgroundColor": "#5a65ea",
         "color": "#fff",
         "displayName": "Discord",
         "icon": DiscordSVG,
     },
     "github": {
+        "authorizationURL": "https://github.com/login/oauth/authorize",
         "backgroundColor": "#000",
         "color": "#fff",
         "displayName": "GitHub",
@@ -30,7 +32,7 @@ export default function Integration(props: IntegrationProps) {
 
     return (
         <div style= {{ width: props["width"], height: props["height"], margin: "5px 0"}}>
-            <Link href="/" style={{display: "block", width: "100%", height: "100%"}}>
+            <Link href={provider["authorizationURL"]} style={{display: "block", width: "100%", height: "100%"}}>
                 <div style={{
                     backgroundColor: provider["backgroundColor"],
                     display: "flex", 
