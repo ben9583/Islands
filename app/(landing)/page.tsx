@@ -1,5 +1,5 @@
 import styles from './page.module.css'
-import OceanSVG from '../assets/images/ocean.svg'
+import OceanSVG from '../../assets/images/ocean.svg'
 import Image from 'next/image'
 
 export default function Home() {

@@ -1,6 +1,6 @@
-import Integration from '../../components/login/Integration'
+import Integration from '../../../components/login/Integration'
 import styles from './page.module.css'
-import loginStyles from '../../components/login/Login.module.css'
+import loginStyles from '../../../components/login/Login.module.css'
 
 export default function Login() {
     return (
