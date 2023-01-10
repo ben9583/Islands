@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
-import DiscordSVG from "../../assets/images/integrations/discord.svg"
-import GithubSVG from "../../assets/images/integrations/github.svg"
+import DiscordSVG from "../assets/images/integrations/discord.svg"
+import GithubSVG from "../assets/images/integrations/github.svg"
 
 type IntegrationProps = {
     provider: "discord" | "github",
