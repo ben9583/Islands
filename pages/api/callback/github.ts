@@ -1,9 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { setCookie } from '../../../utils/cookies'
+import { setCookies } from '../../../utils/cookies'
 
 type Data = {
   success: boolean,
   message?: string,
+}
+
+type GitHubAccessTokenResponse = {
+  access_token: string,
+  scope: string,
+  token_type: string
 }
 
 export default async function handler(
@@ -35,12 +41,12 @@ export default async function handler(
     return
   }
 
-  const data = await response.json()
-  const access_token = data.access_token
+  const data = await response.json() as GitHubAccessTokenResponse
 
-  console.log(data)
-
-  setCookie(res, "access_token", "github-" + access_token, { path: "/", maxAge: 31536000, httpOnly: true, secure: true, sameSite: "strict" })
+  setCookies(res, ["provider", "access_token"], ["github", data.access_token], [
+    { path: "/", maxAge: 31536000, httpOnly: true, secure: true, sameSite: "strict" },
+    { path: "/", maxAge: 31536000, httpOnly: true, secure: true, sameSite: "strict" }
+  ])
 
   res.status(303).redirect("/")
 }
