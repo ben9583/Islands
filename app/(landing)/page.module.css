@@ -22,13 +22,13 @@
   height: 480px;
   position: relative;
   margin-top: 37.5px;
-  background-color: #1C488A;
+  background-color: #1c488a;
   text-align: left; /* I don't know why this is necessary, but for some reason this div having center text-align makes the ocean svg leave the screen. */
 }
 
 .secondLevel {
   height: 480px;
-  background-color: #16283D;
+  background-color: #16283d;
 }
 
 .thirdLevel {

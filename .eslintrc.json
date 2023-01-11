@@ -1,3 +1,20 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "quotes": ["warn", "double"],
+    "semi": ["warn", "never"],
+    "comma-dangle": ["warn", "always-multiline"],
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "indent": ["warn", 2]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"]
+      }
+    }
+  }
 }

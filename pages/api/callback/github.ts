@@ -1,24 +1,26 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { setCookies } from '../../../utils/cookies'
+import type { NextApiRequest, NextApiResponse } from "next"
+import { setCookies } from "../../../lib/utils/cookies"
 
 type Data = {
-  success: boolean,
-  message?: string,
-}
+  success: boolean;
+  message?: string;
+};
 
 type GitHubAccessTokenResponse = {
-  access_token: string,
-  scope: string,
-  token_type: string
-}
+  access_token: string;
+  scope: string;
+  token_type: string;
+};
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   const code: string | string[] | undefined = req.query.code
-  if(code === undefined) {
-    res.status(400).json({ success: false, message: "Invalid authorization code" })
+  if (code === undefined) {
+    res
+      .status(400)
+      .json({ success: false, message: "Invalid authorization code" })
     return
   }
 
@@ -33,20 +35,39 @@ export default async function handler(
       client_secret: process.env.GITHUB_CLIENT_SECRET,
       code: code,
       redirect_uri: "http://localhost:3000/api/callback/github",
-    })
+    }),
   })
 
-  if(response.status !== 200) {
-    res.status(400).json({ success: false, message: "Invalid authorization code"})
+  if (response.status !== 200) {
+    res
+      .status(400)
+      .json({ success: false, message: "Invalid authorization code" })
     return
   }
 
-  const data = await response.json() as GitHubAccessTokenResponse
+  const data = (await response.json()) as GitHubAccessTokenResponse
 
-  setCookies(res, ["provider", "access_token"], ["github", data.access_token], [
-    { path: "/", maxAge: 31536000, httpOnly: true, secure: true, sameSite: "strict" },
-    { path: "/", maxAge: 31536000, httpOnly: true, secure: true, sameSite: "strict" }
-  ])
+  setCookies(
+    res,
+    ["provider", "access_token"],
+    ["github", data.access_token],
+    [
+      {
+        path: "/",
+        maxAge: 31536000,
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+      },
+      {
+        path: "/",
+        maxAge: 31536000,
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+      },
+    ]
+  )
 
   res.status(303).redirect("/")
 }
