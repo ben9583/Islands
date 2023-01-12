@@ -1,3 +1,4 @@
+import React from "react"
 import styles from "./page.module.css"
 import OceanSVG from "../../assets/images/ocean.svg"
 import Image from "next/image"

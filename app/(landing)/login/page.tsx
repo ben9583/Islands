@@ -1,3 +1,4 @@
+import React from "react"
 import Integration from "../../../components/Integration"
 import styles from "./page.module.css"
 
