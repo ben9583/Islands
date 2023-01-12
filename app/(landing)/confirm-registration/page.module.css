@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.confirmRegistrationContainer {
+  width: 400px;
+  padding: 25px;
+  height: 300px;
+  border: 1px solid #a746a7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.separator {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(24, 48, 96, 0.5);
+  border-radius: 5px;
+  margin: 10px 0;
+}
