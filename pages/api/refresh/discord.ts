@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import { cookies } from "next/headers"
 import { setCookies } from "../../../lib/utils/cookies"
 
 type DiscordRefreshTokenResponse = {
@@ -10,10 +11,11 @@ type DiscordRefreshTokenResponse = {
 };
 
 export default async function handler(
-  req: NextApiRequest,
+  _req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const refreshToken: string | undefined = req.body.refreshToken
+  const userCookies = cookies()
+  const refreshToken: string | undefined = userCookies.get("request_token")?.value
   if (refreshToken === undefined) {
     res.status(400)
     return
