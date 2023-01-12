@@ -1,11 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { setCookies } from "../../../lib/utils/cookies"
 
-type Data = {
-  success: boolean;
-  message?: string;
-};
-
 type DiscordAccessTokenResponse = {
   access_token: string;
   token_type: string;
@@ -16,7 +11,7 @@ type DiscordAccessTokenResponse = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
   const code: string | string[] | undefined = req.query.code
   if (code === undefined) {
