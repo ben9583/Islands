@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import { cookies } from "next/headers"
-import { setCookies } from "../../../lib/utils/cookies"
+import { setCookies } from "../../lib/utils/cookies"
 
 type DiscordRefreshTokenResponse = {
   access_token: string;
@@ -11,13 +10,22 @@ type DiscordRefreshTokenResponse = {
 };
 
 export default async function handler(
-  _req: NextApiRequest,
+  req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const userCookies = cookies()
-  const refreshToken: string | undefined = userCookies.get("request_token")?.value
+  if(req.method !== "POST") {
+    res.status(405).send("")
+    return
+  }
+  const userCookies = req.cookies
+  if(userCookies["access_token"] !== undefined) {
+    res.status(204).send("")
+    return
+  }
+
+  const refreshToken = userCookies["refresh_token"]
   if (refreshToken === undefined) {
-    res.status(400)
+    res.status(400).send("")
     return
   }
 
@@ -31,7 +39,10 @@ export default async function handler(
   })
 
   if (response.status !== 200) {
-    res.status(400)
+    console.log(refreshToken)
+    console.log(response.status)
+    console.log(await response.json())
+    res.status(400).send("")
     return
   }
 
@@ -66,5 +77,5 @@ export default async function handler(
     ]
   )
 
-  res.status(200)
+  res.status(200).send("")
 }
