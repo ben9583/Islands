@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import { refreshToken } from "../../lib/auth/token"
 import { setCookies } from "../../lib/utils/cookies"
 
 type DiscordRefreshTokenResponse = {
@@ -23,35 +24,22 @@ export default async function handler(
     return
   }
 
-  const refreshToken = userCookies["refresh_token"]
-  if (refreshToken === undefined) {
+  const refreshTokenVal = userCookies["refresh_token"]
+  if (refreshTokenVal === undefined) {
     res.status(400).send("")
     return
   }
 
-  const response = await fetch("https://discord.com/api/oauth2/token", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `client_id=${process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID}&client_secret=${process.env.DISCORD_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refreshToken}`,
-  })
-
-  if (response.status !== 200) {
-    console.log(refreshToken)
-    console.log(response.status)
-    console.log(await response.json())
+  const newTokens = await refreshToken(userCookies["provider"] ?? "", refreshTokenVal)
+  if(newTokens === undefined) {
     res.status(400).send("")
     return
   }
-
-  const data = (await response.json()) as DiscordRefreshTokenResponse
 
   setCookies(
     res,
     ["provider", "access_token", "refresh_token"],
-    ["discord", data.access_token, data.refresh_token],
+    ["discord", newTokens.access_token, newTokens.refresh_token],
     [
       {
         path: "/",
@@ -62,7 +50,7 @@ export default async function handler(
       },
       {
         path: "/",
-        maxAge: data.expires_in,
+        maxAge: newTokens.expires_in,
         httpOnly: true,
         secure: true,
         sameSite: "strict",

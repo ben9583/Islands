@@ -5,6 +5,7 @@ const revokeToken = (provider: string, accessToken: string) => {
 type RefreshTokenResponse = {
   access_token: string
   refresh_token: string
+  expires_in: number
 }
 
 const refreshToken = async (provider: string, refreshToken: string): Promise<RefreshTokenResponse | undefined> => {
@@ -23,8 +24,8 @@ const refreshToken = async (provider: string, refreshToken: string): Promise<Ref
       return
     }
 
-    const data = await response.json()
-    return { access_token: data.access_token, refresh_token: data.refresh_token }
+    const data = (await response.json()) as RefreshTokenResponse
+    return { access_token: data.access_token, refresh_token: data.refresh_token, expires_in: data.expires_in }
   default:
     throw new Error("Unable to refresh token; this method is not implemented for the provider: " + provider)
   }
