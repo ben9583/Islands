@@ -20,9 +20,7 @@ export default async function handler(
 ) {
   const code: string | string[] | undefined = req.query.code
   if (code === undefined) {
-    res
-      .status(400)
-      .json({ success: false, message: "Invalid authorization code" })
+    res.status(303).redirect("/")
     return
   }
 
@@ -36,9 +34,7 @@ export default async function handler(
   })
 
   if (response.status !== 200) {
-    res
-      .status(400)
-      .json({ success: false, message: "Invalid authorization code" })
+    res.status(303).redirect("/")
     return
   }
 

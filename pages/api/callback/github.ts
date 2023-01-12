@@ -1,11 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import { setCookies } from "../../../lib/utils/cookies"
 
-type Data = {
-  success: boolean;
-  message?: string;
-};
-
 type GitHubAccessTokenResponse = {
   access_token: string;
   scope: string;
@@ -14,13 +9,11 @@ type GitHubAccessTokenResponse = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
   const code: string | string[] | undefined = req.query.code
   if (code === undefined) {
-    res
-      .status(400)
-      .json({ success: false, message: "Invalid authorization code" })
+    res.status(303).redirect("/")
     return
   }
 
@@ -39,9 +32,7 @@ export default async function handler(
   })
 
   if (response.status !== 200) {
-    res
-      .status(400)
-      .json({ success: false, message: "Invalid authorization code" })
+    res.status(303).redirect("/")
     return
   }
 
