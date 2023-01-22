@@ -1,4 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import { getUser } from "../../../lib/provider/discord"
+import { getUserFromEmail } from "../../../lib/user"
 import { setCookies } from "../../../lib/utils/cookies"
 
 type DiscordAccessTokenResponse = {
@@ -64,5 +66,17 @@ export default async function handler(
     ]
   )
 
-  res.status(303).redirect("/")
+  const user = await getUser(data.access_token)
+  if (user === undefined || user.email === undefined) {
+    res.status(303).redirect("/")
+    return
+  }
+
+  const db_entry = await getUserFromEmail(user.email)
+
+  if (db_entry === undefined) {
+    res.status(303).redirect("/confirm-registration")
+  } else {
+    res.status(303).redirect("/app")
+  }
 }
