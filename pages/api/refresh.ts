@@ -2,14 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import { refreshToken } from "../../lib/auth/token"
 import { setCookies } from "../../lib/utils/cookies"
 
-type DiscordRefreshTokenResponse = {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-  refresh_token: string;
-  scope: string;
-};
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
