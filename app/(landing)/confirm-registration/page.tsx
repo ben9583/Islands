@@ -25,7 +25,7 @@ export default async function Home() {
   
   return (
     <main className={styles.main}>
-      <Container height={400}>
+      <Container height={450}>
         <div>
           <h1>Confirm Registration</h1>
         </div>
