@@ -16,11 +16,14 @@ interface UserDBEntry {
   privilege: number
 }
 
+// For some reason, eslint thinks these aren't used...
+/* eslint-disable no-unused-vars */
 export enum UserStatus {
   Registered,
   NotRegistered,
   DoesNotExist
 }
+/* eslint-disable no-unused-vars */
 
 interface User<Status extends UserStatus> {
   status: Status
