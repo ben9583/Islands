@@ -1,3 +1,9 @@
+type RefreshTokenResponse = {
+  access_token: string
+  refresh_token: string
+  expires_in: number
+}
+
 const refreshToken = async (provider: string, refreshToken: string): Promise<RefreshTokenResponse | undefined> => {
   switch(provider) {
   case "discord":
@@ -21,14 +27,4 @@ const refreshToken = async (provider: string, refreshToken: string): Promise<Ref
   }
 }
 
-const revokeToken = (provider: string, accessToken: string) => {
-  throw new Error("This function is not yet implemented")
-}
-
-type RefreshTokenResponse = {
-  access_token: string
-  refresh_token: string
-  expires_in: number
-}
-
-export { refreshToken, revokeToken}
+export { refreshToken }
