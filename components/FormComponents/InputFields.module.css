@@ -7,3 +7,25 @@
   background-color: #ddd;
   color: #000;
 }
+
+.inputSubmitButton {
+  background-color: #a746a7;
+  border-style: hidden;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  margin-bottom: 10px;
+  transition: background-color 0.25s;
+  cursor: pointer;
+}
+
+.inputSubmitButton:hover {
+  background-color: #c061c0;
+}
+
+.inputSubmitButton:active {
+  background-color: #a746a7;
+}
